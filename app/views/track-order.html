@@ -1,0 +1,99 @@
+<!--start tracking section-->
+<section class="tracking" ng-controller="OrderController" ng-init="init()">
+    <div class="container">
+        <h2 class="h1 text-capitalize">your food is on the way !</h2>
+        <div class="order-steps">
+            <h3 class="text-uppercase">order status</h3>
+            <hr>
+            <div class=" row no-gutters">
+                <div class="col-auto text-center each-step">
+                    <h3 class="text-capitalize">Received</h3>
+                    <span class="check checked">&#10004;</span>
+                    <p>Seal Your Meal received your order. You will get notified once the order is accepted.</p>
+                    <span class="line"></span>
+                </div>
+                <div class="col-auto text-center each-step">
+                    <h3 class="text-capitalize">Accepted</h3>
+                    <span class="check" ng-if="!accepted"></span>
+                    <span class="check checked" ng-if="accepted">&#10004;</span>
+                    <p>Your payment has been accepted. Our chefs started cooking your meal.</p>
+                    <span class="line"></span>
+                </div>
+                <div class="col-auto text-center each-step">
+                    <h3 class="text-capitalize">Preparing</h3>
+                    <span class="check" ng-if="!preparing"></span>
+                    <span class="check checked" ng-if="preparing">&#10004;</span>
+                    <p>Our chefs are busy creating a delicious meal for you. Shouldn't take long!</p>
+                    <span class="line"></span>
+                </div>
+                <div class="col-auto text-center each-step">
+                    <h3 class="text-capitalize">Dispatched</h3>
+                    <span class="check" ng-if="!dispatched"></span>
+                    <span class="check checked" ng-if="dispatched">&#10004;</span>
+                    <p>Your order is on the way. Our drivers will do the best to have the food in no time.</p>
+                    <span class="line"></span>
+                </div>
+                <div class="col-auto text-center each-step">
+                    <h3 class="text-capitalize">Delivered</h3>
+                    <span class="check" ng-if="!delivered"></span>
+                    <span class="check checked" ng-if="delivered">&#10004;</span>
+                    <p>Hope the food was good and you enjoyed your meal. Don't forget to leave a feedback.</p>
+                </div>
+            </div>
+        </div>
+        <!--cart div-->
+        <div class="cart-wrapper">
+            <div class="cart-header">
+                <div class="row no-gutters text-uppercase justify-content-between">
+                    <div class="col-5 header-details">
+                        details
+                    </div>
+                    <div class="col-1 header-price">
+                        price
+                    </div>
+                    <div class="col-2 header-quantity">
+                        quantity
+                    </div>
+                    <div class="col-1 header-total-price">
+                        total price
+                    </div>
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="cart-body">
+                <div class="row no-gutters justify-content-between single-order" ng-repeat="cartItem in cartItems track by $index">
+                    <div class="col-5 body-details">
+                        <img ng-src="{{cartItem.imageLink}}" alt="" class="float-left d-inline-block">
+                        <div class="body-details-info d-inline-block ">
+                            <h3>{{cartItem.name}}</h3>
+                            <div class="body-details-features">
+                                <span class="dish-weight">{{cartItem.weight}} g</span>
+                                <span class="dot">.</span>
+                                <span class="dish-energy">{{cartItem.calories}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1 body-price">
+                        ₹ {{cartItem.price}}
+                    </div>
+                    <div class="col-2 body-quantity">
+                        <span class="cart-item-quantity">{{cartItem.quantity}}</span>
+                    </div>
+                    <div class="col-1 body-total-price">
+                        ₹ {{cartItem.totalPrice}}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="cart-calc text-capitalize">
+                <div class="row no-gutters justify-content-end">
+                    <div class="col-auto text-left">total to pay</div>
+                    <div class="col-2 text-right total-bill">₹ {{subTotal}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--end tracking section-->

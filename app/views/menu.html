@@ -1,0 +1,53 @@
+<!--start menu section-->
+<section class="menu" ng-controller="MenuController" ng-init="init()">
+    <!--container div-->
+    <div class="container">
+        <!--jap header-->
+        <div class="menu-header row no-gutters justify-content-between align-items-center">
+            <h2 class="h1 col-5">{{selectedCuisine}}</h2>
+            <div class="filter col-5 text-right">
+                <label for="filter">Fliter By:</label>
+                <div class="custom-select">
+                    <div class="d-inline-block arrow-down">
+                        <span class="d-inline-block"></span><span class="d-inline-block"></span>
+                    </div>
+                    <select name="filter" id="filter" ng-model="selectedFoodCategory" ng-change="filter(selectedFoodCategory)"
+                        ng-options="foodCategory as foodCategory for foodCategory in foodCategories">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--end jap header row-->
+        <!--start row of dishes-->
+        <div class="row no-gutters justify-content-between">
+            <div class="col-auto single-dish bounceInRight" data-wow-offset="10" ng-repeat="menuItem in menuItems track by $index"
+                ui-sref='menuItem({ itemId: menuItem.menuId })' ng-click="selectMenuItem(menuItem)"
+                style="cursor: pointer;">
+                <img class="" ng-src="{{menuItem.imageLink}}" alt="">
+                <h4 class="dish-name">
+                    <img class="menu-symbol" src="resources/img/non.svg" alt="" ng-if="menuItem.foodCategory == 'NON_VEGETARIAN'">
+                    <img class="menu-symbol" src="resources/img/veg.svg" alt="" ng-if="menuItem.foodCategory == 'VEGETARIAN'">
+                    <img class="menu-symbol" src="resources/img/egg.svg" alt="" ng-if="menuItem.foodCategory == 'EGGETERIAN'">
+                    {{menuItem.name}}
+                </h4>
+                <span class="dish-weight">{{menuItem.quantity}} g</span>
+                <span class="dot">.</span>
+                <span class="dish-energy">{{menuItem.calories}} cal</span>
+                <div class="line"></div>
+                <div class="price d-inline-block float-left">₹ {{menuItem.price}}</div>
+                <span class="add float-right" ui-sref='menuItem({ itemId: menuItem.menuId })' ng-click="selectMenuItem(menuItem)">+</span>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--end row of dishes-->
+    </div>
+    <div class="row no-gutters" style="margin-left: 48%;">
+        <button class="btn mybutton col-auto text-uppercase" ng-click="loadMoreMenuItems()">load more</button>
+    </div>
+    <!--container div-->
+</section>
+<!--end menu section-->
+
+<!--js files-->
+<script src="resources/js/pages/menu.js"></script>
+<script src="resources/js/pages/dashboard.js"></script>

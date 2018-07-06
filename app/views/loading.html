@@ -1,0 +1,25 @@
+<div class="bg-extended">
+    <div class="align-vertical-center">
+        <rotating-plane-spinner></rotating-plane-spinner>
+    </div>
+</div>
+
+<section class="loading w-100 h-100">
+    <div class="loading-animation">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</section>
+
+<script>
+    // loading screen
+    $(window).on("load", function() {
+        "use strict";
+        $(".loading-animation").fadeOut(400, function() {
+            $(this).parent().fadeOut(400, function() {
+                $(this).remove();
+            });
+        });
+    });
+</script>
